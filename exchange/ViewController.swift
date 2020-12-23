@@ -33,7 +33,10 @@ class ViewController: UIViewController {
         onesLabel.text = ""
     }
 
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func Run(_ sender: Any) {
         
         let money = moneyTextField.text!
@@ -92,20 +95,45 @@ class ViewController: UIViewController {
                 moneyNum! = moneyNum! - 100 * onehundreds!
             }
             
-            tens = moneyNum! / 10
-            ones = moneyNum! % 10
+            if moneyNum! / 50 == 1 {
+                fifty = 1
+                moneyNum! = moneyNum! - 50
+                tens = moneyNum! / 10
+                moneyNum! = moneyNum! - 10 * tens!
+            } else {
+                tens = moneyNum! / 10
+                moneyNum! = moneyNum! - 10 * tens!
+            }
+            
+            if moneyNum! / 5 == 1 {
+                five = 1
+                ones = moneyNum! - 5
+            } else {
+                ones = moneyNum!
+            }
             
         } else if moneyNum! / 10 != 0 {
             
-            tens = moneyNum! / 10
-            ones = moneyNum! % 10
+            if moneyNum! / 50 == 1 {
+                
+                fifty = 1
+                moneyNum! = moneyNum! - 50
+                tens = moneyNum! / 10
+                moneyNum! = moneyNum! - 10 * tens!
+            } else {
+                tens = moneyNum! / 10
+                moneyNum! = moneyNum! - 10 * tens!
+            }
             
-        } else {
-            
-            ones = moneyNum! % 10
+            if moneyNum! / 5 == 1 {
+                five = 1
+                ones = moneyNum! - 5
+            } else {
+                ones = moneyNum!
+            }
             
         }
-
+        
         if thousands != nil {
         thousandsLabel.text = "\(thousands!)"
         } else {
@@ -141,11 +169,6 @@ class ViewController: UIViewController {
         } else {
             onesLabel.text = "0"
         }
-        
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
 
 }
