@@ -50,6 +50,9 @@ class ViewController: UIViewController {
         var five: Int?
         var ones: Int?
 
+
+        
+        // 如果總額超過四位數
         if moneyNum! / 1000 != 0 {
             
             thousands = moneyNum! / 1000
@@ -81,10 +84,11 @@ class ViewController: UIViewController {
             } else {
                 ones = moneyNum!
             }
-
-            
-        } else if moneyNum! / 100 != 0 {
-            
+        }
+        
+        // 如果總額超過三位數，不滿四位數
+        else if moneyNum! / 100 != 0 {
+  
             if moneyNum! / 500 == 1 {
                 fivehundred = 1
                 moneyNum! = moneyNum! - 500
@@ -112,7 +116,10 @@ class ViewController: UIViewController {
                 ones = moneyNum!
             }
             
-        } else if moneyNum! / 10 != 0 {
+        }
+        
+        // 如果總額超過兩位數，不滿三位數
+        else if moneyNum! / 10 != 0 {
             
             if moneyNum! / 50 == 1 {
                 
@@ -131,7 +138,22 @@ class ViewController: UIViewController {
             } else {
                 ones = moneyNum!
             }
-            
+        }
+        
+        // 如果總額是個位數
+        else if moneyNum! / 1 != 0 {
+ 
+            if moneyNum! / 5 == 1 {
+                five = 1
+                ones = moneyNum! - 5
+            } else {
+                ones = moneyNum!
+            }
+        }
+        
+        // 如果總額是0
+        else {
+        
         }
         
         if thousands != nil {
